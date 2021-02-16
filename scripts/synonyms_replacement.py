@@ -153,7 +153,7 @@ def main(argv):
     processed_text = process_input_with_synonym(input_file, synonym_dict)
 
     # Write out file:
-    output_file = open(output_path, "w")
+    output_file = open(output_path, "w", encoding="utf-8")
     output_file.write(processed_text)
 
     output_file.close()
