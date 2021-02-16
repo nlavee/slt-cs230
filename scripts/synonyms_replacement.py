@@ -5,11 +5,13 @@ with a synonym
 Last Update 2/15/2021
 """
 
-from collections import defaultdict
+import getopt
 import logging
-import numpy as np
-import sys, getopt
 import re
+import sys
+from collections import defaultdict
+
+import numpy as np
 
 
 def get_number_of_replacement(method="geometric", geometric_prob=0.5):
@@ -78,7 +80,7 @@ def process_synonym(thesaurus_file):
     """
     synonym_dict = defaultdict(list)
     for line in thesaurus_file.readlines():
-        # logging.info(line)
+        logging.debug(line)
         # Matching all content in square brackets
         match_original_word_pattern = r'\[(.*?)\]'
         all_square_brackets_contents = re.findall(match_original_word_pattern, line)
@@ -105,16 +107,15 @@ def process_synonym(thesaurus_file):
     return synonym_dict
 
 
-"""
-Accepts 3 cli arg: 
-    -t: path to thesaurus txt file.
-    -i: input text file where each line is a sentence whose words might be replaced with synonyms.
-    -o: output text file after processed.
-    -v: verbose logging.
-"""
-
 
 def main(argv):
+    """
+    Accepts 3 cli arg:
+        -t: path to thesaurus txt file.
+        -i: input text file where each line is a sentence whose words might be replaced with synonyms.
+        -o: output text file after processed.
+        -v: verbose logging.
+    """
     try:
         opts, args = getopt.getopt(argv, "t:i:o:vd", ["tfile=", "ifile=", "ofile=", "verbose", "debug"])
     except getopt.GetoptError:
@@ -144,11 +145,11 @@ def main(argv):
     logging.info(f"Output Path: {output_path}")
 
     # Read in thesaurus file:
-    thesaurus_file = open(thesaurus_path, "r")
+    thesaurus_file = open(thesaurus_path, "r", encoding="utf-8")
     synonym_dict = process_synonym(thesaurus_file)
 
     # Read in input file:
-    input_file = open(input_path, "r")
+    input_file = open(input_path, "r", encoding="utf-8")
     processed_text = process_input_with_synonym(input_file, synonym_dict)
 
     # Write out file:
