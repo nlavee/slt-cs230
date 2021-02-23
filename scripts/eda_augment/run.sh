@@ -1,0 +1,3 @@
+python3.7 code/augment_v3.py --input data/aslg.train.gloss.asl --inputLabel data/aslg.train.en --output augmented_data/aslg.train.gloss.asl.rs --outputLabel augmented_data/aslg.train.en.rs  --num_aug=5 --alpha_sr=0.0 --alpha_rd=0.0 --alpha_ri=0.0 --alpha_rs=0.2
+python3.7 code/augment_v3.py --input data/aslg.dev.gloss.asl --inputLabel data/aslg.dev.en --output augmented_data/aslg.dev.gloss.asl.rs --outputLabel augmented_data/aslg.dev.en.rs  --num_aug=5 --alpha_sr=0.0 --alpha_rd=0.0 --alpha_ri=0.0 --alpha_rs=0.2
+python3.7 code/augment_v3.py --input data/aslg.test.gloss.asl --inputLabel data/aslg.test.en --output augmented_data/aslg.test.gloss.asl.rs --outputLabel augmented_data/aslg.test.en.rs  --num_aug=5 --alpha_sr=0.0 --alpha_rd=0.0 --alpha_ri=0.0 --alpha_rs=0.2
