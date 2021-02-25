@@ -1,5 +1,6 @@
 # Easy data augmentation techniques for text classification
-# Jason Wei and Kai Zou
+# Original code from : Jason Wei and Kai Zou (https://github.com/jasonwei20/eda_nlp)
+# Updated for the CS230 class project
 
 import random
 from random import shuffle
@@ -36,13 +37,14 @@ def get_only_chars(line):
 
     line = line.replace("’", "")
     line = line.replace("'", "")
-    line = line.replace("-", " ") #replace hyphens with spaces
+    #line = line.replace("-", " ") #replace hyphens with spaces
     line = line.replace("\t", " ")
     line = line.replace("\n", " ")
     line = line.lower()
 
     for char in line:
-        if char in 'qwertyuiopasdfghjklzxcvbnm ':
+        #if char in 'qwertyuiopasdfghjklzxcvbnm ':
+        if char in 'qwertyuiopasdfghjklzxcvbnm_- ':
             clean_line += char
         else:
             clean_line += ' '
@@ -176,7 +178,7 @@ def eda(sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9)
 	words = sentence.split(' ')
 	words = [word for word in words if word is not '']
 	num_words = len(words)
-	
+
 	augmented_sentences = []
 	num_new_per_technique = int(num_aug/4)+1
 

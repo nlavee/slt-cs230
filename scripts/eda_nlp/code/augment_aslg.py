@@ -1,5 +1,6 @@
 # Easy data augmentation techniques for text classification
-# Jason Wei and Kai Zou
+# Original code from : Jason Wei and Kai Zou (https://github.com/jasonwei20/eda_nlp)
+# Updated for the CS230 class project
 
 from eda import *
 
@@ -73,6 +74,7 @@ def gen_eda(train_orig, label_orig, output_file, output_label_file, alpha_sr, al
         parts = line[:-1]
         label = linesLabel[i]
         label = label.replace(u'\ufeff', '')
+        label = label.replace(u'\n', '')
         sentence = parts
         augmentable = True
         words = line[:-1].split(' ')
@@ -87,11 +89,12 @@ def gen_eda(train_orig, label_orig, output_file, output_label_file, alpha_sr, al
 
         if(augmentable):
             aug_sentences = eda(sentence, alpha_sr=alpha_sr, alpha_ri=alpha_ri, alpha_rs=alpha_rs, p_rd=alpha_rd, num_aug=num_aug)
+            for aug_sentence in aug_sentences:
+                writer.write(aug_sentence + '\n')
+                writerLabel.write(label + '\n')
         else:
-            aug_sentences = sentence
-        for aug_sentence in aug_sentences:
-            writer.write(aug_sentence + '\n')
-            writerLabel.write(label)
+            writer.write(sentence + '\n')
+            writerLabel.write(label + '\n')
 
     writer.close()
     print("generated augmented sentences with eda for " + train_orig + " to " + output_file + " with num_aug=" + str(num_aug))
