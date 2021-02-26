@@ -36,26 +36,44 @@ def process_input_with_synonym(input_file, synonym_dict):
     Probability of replacement follows Section 2.4 of this paper: https://arxiv.org/pdf/1502.01710.pdf
     """
     output_text = ''
+    repeat_count = defaultdict(int)
+    curr_line = 0
     for line in input_file.readlines():
-        words = re.split(r'\s', line)
-        logging.debug(f"Words for line '{line}': {words}")
-        new_sentence = ''
-        replacement_number = get_number_of_replacement()
-        replaced_number = 0
-        for word in words:
-            if word.lower() in synonym_dict and replaced_number <= replacement_number:
-                possible_replacements = synonym_dict[word.lower()]
-                new_word = choose_word(possible_replacements)
-                logging.debug(f"Replaced {word.lower()} with {new_word}")
-                new_sentence += new_word.upper()
-                replaced_number += 1
-            else:
-                new_sentence += word
-            new_sentence += ' '
-        logging.debug(f"New Sentence: {new_sentence} - Old Sentence: {line}")
-        output_text += (new_sentence + '\n')
+        sentence_set = set()
+        for n in range(4):
+            words = re.split(r'\s', line)
+            logging.debug(f"Words for line '{line}': {words}")
+            new_sentence = ''
+            replacement_number = get_number_of_replacement()
+            replaced_number = 0
+            for word in words:
+                if word.lower() in synonym_dict and replaced_number <= replacement_number:
+                    possible_replacements = synonym_dict[word.lower()]
+                    new_word = choose_word(possible_replacements)
+                    logging.debug(f"Replaced {word.lower()} with {new_word}")
+                    new_sentence += new_word.upper()
+                    replaced_number += 1
+                else:
+                    new_sentence += word
+                new_sentence += ' '
+            logging.debug(f"New Sentence: {new_sentence} - Old Sentence: {line}")
+            if new_sentence in sentence_set:
+                continue
+            output_text += (new_sentence + '\n')
+            sentence_set.add(new_sentence)
+        repeat_count[curr_line] = len(sentence_set)
+        curr_line+=1
     logging.info(f"Processed Output: {output_text}")
-    return output_text
+    return output_text, repeat_count
+
+def process_tgt_with_count(tgt_file, repeat_count):
+    curr_line = 0
+    processed_text = ''
+    for line in tgt_file.readlines():
+        for i in range(repeat_count[curr_line]):
+            processed_text += (line)
+        curr_line += 1
+    return processed_text
 
 
 def main(argv):
@@ -100,15 +118,25 @@ def main(argv):
 
     # Read in input file:
     input_file = open(input_path, "r", encoding="utf-8")
-    processed_text = process_input_with_synonym(input_file, synonym_dict)
+    processed_text, repeat_count = process_input_with_synonym(input_file, synonym_dict)
+
+    tgt_path = input_path.replace("gloss.asl", "en")
+    tgt_file = open(tgt_path, "r", encoding="utf-8")
+    processed_tgt = process_tgt_with_count(tgt_file, repeat_count)
 
     # Write out file:
     output_file = open(output_path, "w", encoding="utf-8")
     output_file.write(processed_text)
 
+    output_tgt_path = output_path.replace("gloss.asl", "en")
+    tgt_output_file = open(output_tgt_path, "w", encoding="utf-8")
+    tgt_output_file.write(processed_tgt)
+
     output_file.close()
+    tgt_output_file.close()
     thesaurus_file.close()
     input_file.close()
+    tgt_file.close()
 
 
 if __name__ == "__main__":
