@@ -39,9 +39,10 @@ params:
   dropout: 0.1
 
   # (optional) List of layer to not optimize.
-  freeze_layers:
-    - "encoder/layers/0"
-    - "decoder/output_layer"
+ # freeze_layers:
+ #   - "encoder/layers/0"
+ #   - "decoder/output_layer"
+
 
 
 
@@ -157,7 +158,7 @@ train:
 
   # (optional) The width of the length buckets to select batch candidates from.
   # A smaller value means less padding and increased efficiency. (default: 1).
-  #length_bucket_width: 1
+  length_bucket_width: 2
 
   # (optional) The number of elements from which to sample during shuffling (default: 500000).
   # Set 0 or null to disable shuffling, -1 to match the number of training examples.
@@ -174,7 +175,7 @@ train:
 # (optional) Evaluation options.
 eval:
   # (optional) The batch size to use (default: 32).
-  #batch_size: 30
+  batch_size: 519
   # (optional) Batch size is the number of "examples" or "tokens" (default: "examples").
   batch_type: tokens
 
@@ -201,7 +202,7 @@ eval:
   # default: "saved_model").
   export_format: saved_model
   # (optional) Maximum number of exports to keep on disk (default: 5).
-  max_exports_to_keep: 5
+  max_exports_to_keep: 3
 
   # (optional) Early stopping condition.
   # Should be read as: stop the training if "metric" did not improve more
@@ -211,7 +212,7 @@ eval:
     metric: bleu
     # (optional) The metric should improve at least by this much to be considered
     # as an improvement (default: 0)
-    min_improvement: 0.01
+    #min_improvement: 0.01
     steps: 3
 
 # (optional) Inference options.

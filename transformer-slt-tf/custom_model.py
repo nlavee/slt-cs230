@@ -1,5 +1,6 @@
 import opennmt
-import tensorflow as tf
+from opennmt import layers
+
 
 class MyCustomTransformer(opennmt.models.Transformer):
     def __init__(self):
@@ -13,9 +14,11 @@ class MyCustomTransformer(opennmt.models.Transformer):
             dropout=0.1,
             attention_dropout=0.1,
             ffn_dropout=0.1,
-            ffn_activation=tf.nn.softmax,
+            position_encoder_class=layers.SinusoidalPositionEncoder,
+            maximum_relative_position=None,
         )
 
     # Here you can override any method from the Model class for a customized behavior.
+
 
 model = MyCustomTransformer

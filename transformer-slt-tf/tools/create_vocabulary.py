@@ -80,7 +80,7 @@ def main():
         try:
             from onmt.inputters.inputter import _old_style_vocab
         except ImportError:
-            sys.path.insert(1, os.path.join(sys.path[0], '..'))
+            sys.path.insert(1, os.path.join(sys.path[0], '../../transformer-slt-tf-2'))
             from onmt.inputters.inputter import _old_style_vocab
 
         print("Reading input file...")
