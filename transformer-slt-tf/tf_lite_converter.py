@@ -1,4 +1,8 @@
+import getopt
+import sys
+
 import tensorflow as tf
+
 
 def main(argv):
     """
@@ -15,7 +19,7 @@ def main(argv):
     model_path = ''
     for opt, arg in opts:
         if opt in ("-m", "--model_path"):
-            model_path= arg
+            model_path = arg
         else:
             logging.error('Wrong param, only -m or --model_path')
             sys.exit(2)
@@ -24,7 +28,6 @@ def main(argv):
     converter = tf.lite.TFLiteConverter.from_saved_model(model_path)
     tflite_model = converter.convert()
     open("converted_model.tflite", "wb").write(tflite_model)
-
 
 
 if __name__ == "__main__":
