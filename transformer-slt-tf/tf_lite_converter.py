@@ -9,6 +9,7 @@ def main(argv):
     """
     Simple script to attempt turning a full TF model into a TF-lite model.
     """
+    logging.basicConfig(level=logging.INFO)
     try:
         opts, args = getopt.getopt(argv,
                                    "m",
