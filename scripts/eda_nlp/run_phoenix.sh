@@ -1,0 +1,1 @@
+python3.7 code/augment_aslg.py --input data/phoenix2014T.train.gloss --inputLabel data/phoenix2014T.train.de --output augmented_data/phoenix2014T.train.gloss.rs --outputLabel augmented_data/phoenix2014T.train.de.rs  --num_aug=16 --alpha_sr=0.0 --alpha_rd=0.1 --alpha_ri=0.0 --alpha_rs=0.0

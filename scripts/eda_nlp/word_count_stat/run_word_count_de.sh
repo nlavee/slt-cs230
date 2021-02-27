@@ -1,0 +1,1 @@
+python3.7 ../code/aslg_word_count.py --input ./phoenix2014T.train.gloss --inputLabel ./phoenix2014T.train.de --output ./tmp.gloss.de --outputLabel ./tmp.de  --num_aug=1 --alpha_sr=0.0 --alpha_rd=0.0 --alpha_ri=0.0 --alpha_rs=0.1
