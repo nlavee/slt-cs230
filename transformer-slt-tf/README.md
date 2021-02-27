@@ -6,20 +6,7 @@ This code is based on [OpenNMT](https://github.com/OpenNMT/OpenNMT-py) and requi
 
 The recommended way to install is shown below:
 ```
-# create a new virtual environment
-virtualenv --python=python3 venv
-source venv/bin/activate
-
-# clone the repo
-git clone https://github.com/kayoyin/transformer-slt.git
-cd transformer-slt
-
-# install python dependencies
-pip install -r requirements.txt
-
-# install OpenNMT-py
-python setup.py install
-
+pip install OpenNMT-tf
 ```
 ### Create vocab
 If you run data augmentation, rerun the vocab building process.
