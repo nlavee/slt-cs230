@@ -21,6 +21,7 @@ def main(argv):
     model_path = ''
     for opt, arg in opts:
         if opt in ("-m", "--model_path"):
+            logging.info(f"Arg Supplied: {arg}")
             model_path = arg
         else:
             logging.error('Wrong param, only -m or --model_path')
