@@ -1,4 +1,5 @@
 import getopt
+import logging
 import sys
 
 import tensorflow as tf
