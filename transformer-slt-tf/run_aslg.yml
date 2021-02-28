@@ -3,13 +3,13 @@ model_dir: nmt_aslg
 
 data:
   # (required for train run type).
-  train_features_file: ../data/aslg.train.gloss.asl
-  train_labels_file: ../data/aslg.train.en
+  train_features_file: data/aslg.train.gloss.asl
+  train_labels_file: data/aslg.train.en
 
 
   # (required for train_end_eval and eval run types).
-  eval_features_file: ../data/aslg.dev.gloss.asl
-  eval_labels_file: ../data/aslg.dev.en
+  eval_features_file: data/aslg.dev.gloss.asl
+  eval_labels_file: data/aslg.dev.en
 
   # (optional) Models may require additional resource files (e.g. vocabularies).
   source_vocabulary: src-aslg-vocab.txt
@@ -174,7 +174,7 @@ eval:
   batch_type: tokens
 
   # (optional) Evaluate every this many steps (default: 5000).
-  steps: 100
+  steps: 400
 
   # (optional) Save evaluation predictions in model_dir/eval/.
   save_eval_predictions: false
