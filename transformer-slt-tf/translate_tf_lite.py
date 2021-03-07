@@ -60,17 +60,21 @@ def main(argv):
         return_scores=True
     )
     output_sentences = []
+    output_scores = []
     for ele in output:
         sentence = " ".join(ele[0]['tokens'])
         # print(sentence)
         score = ele[0]['score']
-        formatted_output = f"{sentence}|{score}"
-        print(formatted_output)
-        output_sentences.append(formatted_output)
+        # formatted_output = f"{sentence}|{score}"
+        # print(formatted_output)
+        output_sentences.append(sentence)
+        output_scores.append(score)
 
-    # write output
+    # write output (sentences and scores, index should be preserved).
     output_file = open(output_file_path, "w", encoding="utf-8")
     output_file.write("\n".join(output_sentences))
+    output_score_file = open(output_file_path.replace(".txt", "_score_only.txt"), "w", encoding="utf-8")
+    output_score_file.write("\n".join(output_scores))
 
 
 if __name__ == "__main__":
