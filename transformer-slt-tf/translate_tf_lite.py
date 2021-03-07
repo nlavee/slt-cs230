@@ -64,7 +64,7 @@ def main(argv):
     for ele in output:
         sentence = " ".join(ele[0]['tokens'])
         # print(sentence)
-        score = ele[0]['score']
+        score = str(ele[0]['score'])
         # formatted_output = f"{sentence}|{score}"
         # print(formatted_output)
         output_sentences.append(sentence)
