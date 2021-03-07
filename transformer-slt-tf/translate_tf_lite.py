@@ -76,6 +76,10 @@ def main(argv):
     output_score_file = open(output_file_path.replace(".txt", "_score_only.txt"), "w", encoding="utf-8")
     output_score_file.write("\n".join(output_scores))
 
+    # be a good citizen and close file after write :)
+    output_score_file.close()
+    output_file.close()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
