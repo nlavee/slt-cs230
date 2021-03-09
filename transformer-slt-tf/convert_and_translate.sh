@@ -29,7 +29,9 @@ echo "Outputting the lite model to dir: $EXPORT_DIR"
 # Convert the model into a lite version
 onmt-main --config run_aslg.yml export --export_dir "$EXPORT_DIR" --export_format "$LITE_MODEL_PARAM"
 
+echo "===================================================="
 echo "Your lite model has been exported to dir: $EXPORT_DIR"
+echo "===================================================="
 echo "Do you want to run translation on this model? (y/n)"
 read translate_option
 
@@ -42,4 +44,6 @@ fi
 # Proceed to translate.
 OUTPUT_FILE="${EXPORT_DIR}/tf_lite_translation.txt"
 python translate_tf_lite.py -m "$EXPORT_DIR" -i data/aslg.test.gloss.asl -o "$OUTPUT_FILE"
+echo "===================================================="
 echo "Translation is finished, output is ${OUTPUT_FILE}."
+echo "===================================================="
