@@ -36,6 +36,7 @@ then
 else
   echo "Invalid choice. Exiting"
   exit 2
+fi
 
 # Construct date path.
 DATE=$(date +"%Y_%m_%d_%H_%M")
