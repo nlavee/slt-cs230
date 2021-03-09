@@ -22,17 +22,17 @@ else
 fi
 
 echo "Do you want to run model with run_aslg.yml? (y/n)"
-read run_default_config
+read USE_DEFAULT_CONFIG
 CONFIG="run_aslg.yml"
-if [[ run_default_config == "y" ]];
+if [[ $USE_DEFAULT_CONFIG == "y" ]];
 then
   echo "Using run_aslg.yml"
-elif [[ run_default_config == "n" ]];
+elif [[ $USE_DEFAULT_CONFIG == "n" ]];
 then
   echo "Please input a yml file:"
-  read yml_file
-  echo "Using supplied yml file: ${yml_file}"
-  CONFIG="$yml_file"
+  read YML_FILE
+  echo "Using supplied yml file: ${YML_FILE}"
+  CONFIG="$YML_FILE"
 else
   echo "Invalid choice. Exiting"
   exit 2
@@ -50,9 +50,9 @@ echo "===================================================="
 echo "Your lite model has been exported to dir: $EXPORT_DIR"
 echo "===================================================="
 echo "Do you want to run translation on this model? (y/n)"
-read translate_option
+read TRANSLATE_OPTION
 
-if [[ $translate_option == "n" ]];
+if [[ $TRANSLATE_OPTION == "n" ]];
 then
   echo "Chosen not to translate, exiting."
   exit 0
