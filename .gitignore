@@ -1,3 +1,6 @@
 
 .idea/*
 data/*
+/OpenNMT-tf/scripts/
+/OpenNMT-tf/build/
+/OpenNMT-tf/docs/
