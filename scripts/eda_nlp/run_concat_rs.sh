@@ -1,0 +1,2 @@
+python3.7 code/concat_datasets.py --input data/aslg.train.gloss.asl --inputLabel data/aslg.train.en --output concat_data/aslg.train.gloss.concat --outputLabel concat_data/aslg.train.en.concat --num_concat 5
+python3.7 code/augment_aslg.py --input concat_data/aslg.train.gloss.concat --inputLabel concat_data/aslg.train.en.concat --output augmented_data_concat/aslg.train.gloss.asl.rs_10 --outputLabel augmented_data_concat/aslg.train.en.rs_10  --num_aug=16 --alpha_sr=0.0 --alpha_rd=0.0 --alpha_ri=0.0 --alpha_rs=0.1
